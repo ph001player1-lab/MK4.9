@@ -1,4 +1,4 @@
-/* "Захвати рынок или закрой бизнес" — MVP v4.8 · от 28.08.2026 */
+/* "Захвати рынок или закрой бизнес" — MVP v4.9 · от 28.08.2026 */
 :root {
     --bg: #0f1115;
     --card: #171a21;
@@ -296,3 +296,25 @@ input.input-invalid { border-color: var(--danger); }
 }
 .subcard h4 { font-size: 14px; margin: 0 0 6px; }
 .subcard select, .subcard input { margin-bottom: 8px; }
+
+/* ---------------------------------------- v4.9: числовые поля без стрелок */
+/*
+   Стрелки-счётчики у полей type="number" на телефоне попадают под палец
+   при обычной прокрутке, и сумма меняется незаметно для игрока. Убираем
+   их полностью — ввод только с клавиатуры.
+
+   Три правила вместо одного, потому что браузеры прячут счётчик
+   по-разному: WebKit и Blink рисуют псевдоэлемент, Firefox управляет
+   через appearance.
+*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
